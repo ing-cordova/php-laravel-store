@@ -5,6 +5,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/categories', [CategoryController::class, 'index']);
@@ -24,6 +26,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/verify-email', [UserController::class, 'verifyEmail']);
     Route::post('/send-recovery-password-notification', [UserController::class, 'sendRecoveryPasswordNotification']);
     Route::post('/change-password', [UserController::class, 'changeTemporalPassword']);
+
+    Route::post('/cart/add', [CartController::class, 'addToCart']);
+    Route::post('/order/place', [OrderController::class, 'placeOrder']);
 });
 
 Route::post('/login', [UserController::class, 'login'])->name('login');
